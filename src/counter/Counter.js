@@ -36,8 +36,10 @@ type Props = {
 
 export class Counter extends Component<void, Props, void> {
   render() {
+    const loading = (this.props.value.loadingCount === 0) ? null : <Text style={styles.welcome}>Loading...</Text>;
     return (
       <View style={styles.container}>
+        {loading}
         <Text style={styles.welcome}>
           {`Count: ${this.props.value.num}`}
         </Text>
@@ -49,6 +51,11 @@ export class Counter extends Component<void, Props, void> {
         <Button
           onPress={() => this.props.actions.decrement(2)}
           title="decrement 2"
+          color="#841584"
+        />
+        <Button
+          onPress={() => this.props.actions.fetchAmount()}
+          title="async increment 100"
           color="#841584"
         />
       </View>
