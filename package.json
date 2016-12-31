@@ -8,7 +8,8 @@
     "start": "react-native run-android",
     "test:ut": "mocha --compilers js:babel-register ./testPolyfill.js",
     "test:all": "mocha --compilers js:babel-register ./testPolyfill.js src/**/*.spec.js",
-    "server": "node dev-server.js"
+    "server": "node dev-server.js",
+    "connect": "adb reverse tcp:8081 tcp:8081 && adb reverse tcp:3000 tcp:3000"
   },
   "dependencies": {
     "deep-equal": "^1.0.1",
