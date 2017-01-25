@@ -1,12 +1,17 @@
 // @flow
-export interface CounterState {
-  num: number;
-  loadingCount: number;
+export interface ToDoState {
+  todoList: IToDo[]
 }
 
-export interface MyAction {
+export interface IToDo {
+  id: string;
+  title: string;
+  isCompleted: boolean;
+}
+
+export interface ToDoAction {
   type: string;
-  amount: ?number;
+  todoList: IToDo[];
 }
 
 export interface JsonObject {

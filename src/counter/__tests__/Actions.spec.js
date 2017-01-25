@@ -1,11 +1,11 @@
 import assert from 'assert';
 import deepEqual from 'deep-equal';
 import {ActionTypes} from "../Entities";
-import {ActionDispatcher, INCREMENT, FETCH_REQUEST_START, FETCH_REQUEST_FINISH} from "../Actions";
+import {ToDoActionDispatcher, INCREMENT, FETCH_REQUEST_START, FETCH_REQUEST_FINISH} from "../Actions";
 import fetchMock from 'fetch-mock';
 import {spy} from "sinon";
 
-describe('ActionDispatcher', () => {
+describe('ToDoActionDispatcher', () => {
 
   beforeEach(() => {
     fetchMock.restore();
@@ -13,7 +13,7 @@ describe('ActionDispatcher', () => {
 
   it('increment',  () => {
     const spyCB = spy();
-    const actions = new ActionDispatcher(spyCB);
+    const actions = new ToDoActionDispatcher(spyCB);
     actions.increment(100);
     const calls = spyCB.getCalls();
     assert(calls.length === 1);
@@ -24,7 +24,7 @@ describe('ActionDispatcher', () => {
     fetchMock.get('http://localhost:3000/api/count', {body: {amount: 100}, status: 200});
 
     const spyCB:any = spy();
-    const actions = new ActionDispatcher(spyCB);
+    const actions = new ToDoActionDispatcher(spyCB);
 
     await actions.fetchAmount();
 
@@ -39,7 +39,7 @@ describe('ActionDispatcher', () => {
     fetchMock.get('http://localhost:3000/api/count', {body: {}, status: 400});
 
     const spyCB:any = spy();
-    const actions = new ActionDispatcher(spyCB);
+    const actions = new ToDoActionDispatcher(spyCB);
 
     await actions.fetchAmount();
 
