@@ -1,7 +1,7 @@
 //@flow
 
 import React, {Component} from 'react';
-import Counter from './counter/Root';
+import Counter from './todo/Root';
 import {Provider} from "react-redux";
 import store from "./Store";
 

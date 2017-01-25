@@ -1,5 +1,5 @@
 // @flow
-import todoList from './counter/Reducer'
+import todoList from './todo/Reducer'
 import { createStore, combineReducers } from 'redux'
 
 export default createStore(

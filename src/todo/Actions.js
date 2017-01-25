@@ -41,13 +41,38 @@ export class ToDoActionDispatcher {
   }
 
   async fetchFromServer(): Promise<void> {
-    const newToDoList = [{id: "1", title: "hello", isCompleted: false}]
-    setTimeout(() => {
-      this.dispatch({type: TODO_UPDATE, todoList: newToDoList})
-    }, 500)
+    try {
+      const response: Response = await fetch('http://localhost:3000/api/todos', {
+        method: 'GET',
+        headers: myHeaders
+      });
+
+      if (response.status === 200) { //2xx
+        const json: IToDo[] = await response.json();
+        this.dispatch({type: TODO_UPDATE, todoList: json})
+      } else {
+        throw new Error(`illegal status code: ${response.status}`);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
   }
 
   async saveToServer(): Promise<void> {
-    await Promise.resolve("OK")
+    try {
+      const response: Response = await fetch('http://localhost:3000/api/todos', {
+        method: 'PUT',
+        headers: myHeaders,
+        body: JSON.stringify(this.todoList)
+      });
+
+      if (response.status === 200) { //2xx
+        /*do something*/
+      } else {
+        throw new Error(`illegal status code: ${response.status}`);
+      }
+    } catch (err) {
+      console.error(err.message);
+    }
   }
 }

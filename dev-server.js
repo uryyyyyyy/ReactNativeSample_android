@@ -1,14 +1,26 @@
 const path = require('path');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+  extended : true
+}));
+app.use(bodyParser.json());
 
 app.use('/dist', express.static('dist'));
 
-app.get('/api/count', (req, res) => {
+app.get('/api/todos', (req, res) => {
   res.contentType('application/json');
-  const obj = {"amount": 100};
-  setTimeout(() => res.json(obj), 500);
+  const obj = [{id: "1", title: "hello", isCompleted: false}];
+  setTimeout(() => res.json(obj), 100);
   //res.status(400).json(obj); //for error testing
+});
+
+app.put('/api/todos', (req, res) => {
+  res.contentType('application/json');
+  console.log(req.body)
+  const obj = {"result": "OK"};
+  setTimeout(() => res.json(obj), 500);
 });
 
 app.get('/', (req, res) => {
