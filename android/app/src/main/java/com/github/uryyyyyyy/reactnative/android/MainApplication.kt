@@ -1,4 +1,4 @@
-package com.reactnativesample_android
+package com.github.uryyyyyyy.reactnative.android
 
 import android.app.Application
 
