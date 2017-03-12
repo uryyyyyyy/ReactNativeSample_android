@@ -21,6 +21,14 @@ export default class Index extends React.Component {
           title="Toast"
           onPress={() => MyToastModule.show('Awsome', MyToastModule.SHORT)}
         />
+        <Button
+          title="Firebase sendEvent"
+          onPress={() => MyToastModule.sendEvent()}
+        />
+        <Button
+          title="Firebase auth"
+          onPress={() => MyToastModule.showModal()}
+        />
       </View>
     );
   }

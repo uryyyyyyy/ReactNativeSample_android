@@ -1,6 +1,9 @@
 package com.github.uryyyyyyy.reactnative.android.myModules
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.widget.Toast
 import com.facebook.react.bridge.ReactApplicationContext
@@ -38,5 +41,13 @@ class MyToastModule(reactContext: ReactApplicationContext) : ReactContextBaseJav
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
         Log.i("myActivitysssss", mFirebaseAnalytics.toString())
         mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
+    }
+
+    @ReactMethod
+    fun showModal() {
+        val intent = Intent(reactApplicationContext, GoogleAuthActivity::class.java)
+        val message = "loginしてください"
+        intent.putExtra(EXTRA_MESSAGE, message)
+        ActivityCompat.startActivity(currentActivity, intent, null)
     }
 }
