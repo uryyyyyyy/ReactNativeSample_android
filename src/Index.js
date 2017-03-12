@@ -4,8 +4,11 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Button,
+  NativeModules
 } from 'react-native';
+const {MyToastModule} = NativeModules;
 
 export default class Index extends React.Component {
   render() {
@@ -14,13 +17,10 @@ export default class Index extends React.Component {
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <Button
+          title="Toast"
+          onPress={() => MyToastModule.show('Awsome', MyToastModule.SHORT)}
+        />
       </View>
     );
   }
